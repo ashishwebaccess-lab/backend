@@ -10,8 +10,6 @@ const connectDB = require("./config/db");
 
 connectDB();
 
-const cors = require("cors");
-
 app.use(
   cors({
     origin: [
@@ -29,9 +27,7 @@ app.use(express.json());
 
 app.use(
   "/uploads",
-  express.static(
-    path.join(__dirname, "uploads")
-  )
+  express.static(path.join(__dirname, "uploads"))
 );
 
 app.use("/api/auth", require("./routes/authRoutes"));
