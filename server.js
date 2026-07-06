@@ -5,8 +5,9 @@ const path = require("path");
 
 dotenv.config();
 
-const app = express();
 const connectDB = require("./config/db");
+
+const app = express();
 
 connectDB();
 
@@ -17,12 +18,10 @@ app.use(
       "https://ashish.enterprises",
       "https://www.ashish.enterprises",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-app.options("*", cors());
+
 app.use(express.json());
 
 app.use(
@@ -35,15 +34,15 @@ app.use("/api/contact", require("./routes/contactRoutes"));
 app.use("/api/projects", require("./routes/projectRoutes"));
 
 app.get("/", (req, res) => {
-  res.send("API Running...");
+  res.json({
+    success: true,
+    message: "API Running",
+  });
 });
 
-const PORT = process.env.PORT || 5001;
-
 if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
-  });
+  const PORT = process.env.PORT || 5001;
+  app.listen(PORT, () => console.log(`Server running on ${PORT}`));
 }
 
 module.exports = app;
