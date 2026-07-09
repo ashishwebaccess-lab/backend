@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  console.log("LIVE LOGIN");
-  console.log(req.body);
+
 
   if (
     email === "ashishsony@gmail.com" &&
