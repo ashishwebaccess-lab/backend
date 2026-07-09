@@ -5,7 +5,7 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (
-    email === "admin@gmail.com" &&
+    email === "ashishsony@gmail.com" &&
     password === "123456"
   ) {
     const token = jwt.sign(
